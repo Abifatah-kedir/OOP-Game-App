@@ -27,3 +27,7 @@ const phrasesInArray = [
     'Arrays'
 ];
 
+
+function getRandomPhraseAsArray(arr){
+    
+}
