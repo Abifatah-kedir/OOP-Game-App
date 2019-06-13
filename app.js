@@ -27,7 +27,10 @@ const phrasesInArray = [
     'Arrays'
 ];
 
-
+// reusable function that randomly picks phrase from passed variable container.
 function getRandomPhraseAsArray(arr){
-    
+    let  getRandomPhrase= arr[Math.floor(Math.random()* arr.length)];
+    let  phraseSplit = getRandomPhrase.split('');
+    return phraseSplit;
 }
+getRandomPhraseAsArray(phrasesInArray);// calls the function by passing variable constainer.
