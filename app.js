@@ -89,7 +89,9 @@ qwertyElement.addEventListener('click', (event) =>
 
        if (letterFound === null)
        {
-            loosingTries[missed].style.display = 'none';
+            //loosingTries[missed].style.display = 'none';
+            let trialChances = document.querySelectorAll('.tries')[0];
+            trialChances.remove();
             missed += 1;
        }
     }
@@ -98,31 +100,42 @@ qwertyElement.addEventListener('click', (event) =>
 });
 
 /*
-      =================================
-        checks if the player wins or loses.
+      ===================================
+        checks if the player wins or loses, 
+        and declares win or lose decisions 
        ===================================
 */
 
+
+
+const lettersWithShow = document.querySelectorAll('.show');
+const lettersWithLetter = document.querySelectorAll('.letter');
+
+const showOverley = document.getElementById('overlay');
+const title = document.querySelectorAll('.title');
+
    function checkWin() 
    {
-       const lettersWithShow = document.querySelectorAll('.show');
-       const lettersWithLetter = document.querySelectorAll('.letter');
-   
-       const showOverley = document.getElementById('overlay');
-       const title = document.querySelectorAll('.title');
-
        if (missed >= 5) 
        {
-           showOverley.classList.add('lose');
-           console.log("oops, you miss letters")
-           title.textContent = 'Sorry, you did loose';
+          lose();
        }
        else if ( lettersWithShow.length === lettersWithLetter.length)
        {
-           showOverley.classList.add('win');
-           console.log("wax walba oo oki.")
-           title.textContent = 'Congrats!, you win';
+         win();
        }
+   }
+
+   function win() 
+   {
+    showOverley.classList.add('win');
+    console.log("wax walba oo oki.")
+    title.textContent = 'Congrats!, you win';
+   }
+   function lose() {
+    showOverley.classList.add('lose');
+    console.log("oops, you miss letters")
+    title.textContent = 'Sorry, you did loose';
    }
   
  
