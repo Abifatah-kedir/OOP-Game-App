@@ -68,6 +68,10 @@ button {
   width: 100%;
   padding: 10px;
 }
+.phrase > li {
+  top: calc(50% - 4px);
+  transform: rotate(360deg);
+}
 
 /* Title */
 
@@ -83,7 +87,7 @@ button {
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
-  color: transparent;
+  color: black;/* transparent; */
   background: var(--color-neutral-light);
   border-radius: 5px;
 }
