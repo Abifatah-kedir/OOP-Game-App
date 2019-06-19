@@ -1,26 +1,26 @@
-
-
-
 // used variables.
 const qwertyElement = document.querySelector('#qwerty');
 const phraseElement = document.getElementById('phrase');
+const container = document.getElementsByClassName('main-container');
 
-const overleyElement = document.getElementsByClassName('btn__reset');
-//const showOverley = document.querySelectorAll('#overlay');
-
-const constainer = document.getElementsByClassName('main-container');
 const loosingTries = document.querySelectorAll(".tries");
-
 //counter.
 let missed = 0;
 
+//selects  the start button and stores back to the 
+// overleyElement variable
+const overleyElement = document.querySelector('.btn__reset');
+const hideSreenOverley = document.querySelector('.start');
 
 //triggers the 'click' on start game button to hide the overley.
 overleyElement.addEventListener('click', () => 
 {
-    const hideSreenOverley = document.querySelector('.start');
     hideSreenOverley.style.display = 'none';
 });
+
+function retry() {
+    
+}
 
 const phrasesInArray = [
     'take the risk',
@@ -41,7 +41,6 @@ function getRandomPhraseAsArray(arr)
 // calls the function by passing variable constainer.
 const phraseArray = getRandomPhraseAsArray(phrasesInArray);
   
-  
 function addPhraseToDisplay(arr)
 {
     // do stuff any arr that is passed in, and add to `#phrase ul`
@@ -52,17 +51,16 @@ function addPhraseToDisplay(arr)
         listItem.innerHTML += arr[i];
         parentUl.appendChild(listItem);
 
-        if( arr[i] !== ' ' &&  arr[i].match(/^[a-zA-Z]+$/) )
+        if( /*arr[i] !== ' ' &&*/  arr[i].match(/^[a-zA-Z]+$/) )
         {
             listItem.className = 'letter';
-            listItem.style.transition = '.75s';
+            listItem.style.transition = 'all .75s';
         }
     }
     return arr;
 }
 
 addPhraseToDisplay(phraseArray);
-
 
 let matchFoud = false;
 
@@ -97,7 +95,7 @@ qwertyElement.addEventListener('click', (event) =>
        if (letterFound === null)
        {
             //loosingTries[missed].style.display = 'none';
-            let trialChances = document.getElementsByClassName('tries')[0];
+            let trialChances = document.querySelectorAll('.tries')[0];
             trialChances.remove();
             missed += 1;
        }
@@ -113,34 +111,32 @@ qwertyElement.addEventListener('click', (event) =>
        ===================================
 */
 
+//const title = document.querySelectorAll('.title');
+const showOverley = document.querySelectorAll('.overlay');
 
-//const button = document.createElement('button');
-
-function checkWin()
+function checkWin() 
 {
-    
-    let lettersWithLetter = document.getElementsByClassName('letter');
-    let lettersWithShow =  document.getElementsByClassName('show');
+    const lettersWithShow = document.querySelectorAll('.show');
+    const lettersWithLetter = document.querySelectorAll('.letter');
 
     if (missed >= 5) 
     {
-        showOverley.className = 'lose';
-        showOverley.innerTHML = '<h1> Sorry, you lose</h1>';
-        constainer.appendChild(showOverley);
 
-        //document.write(message);
-      
+        showOverley.className = 'lose';
+        showOverley.textContent =  'Sorry, you did loose'
+        console.log(showOverley.textContent);
+        //+ '<button class=btn__reset onclick=location=URL>Try again</button>'
+       //console.log(showOverley.textContent);
+       // container.appendChild(showOverley);
     }
     else if ( lettersWithShow.length === lettersWithLetter.length)
     {
-        apropriateMessage.className = 'win';
-        apropriateMessage.innerHTML = 'Congrats!, you win';
-        showOverley.appendChild(apropriateMessage);
-
-        console.log(apropriateMessage.innerHTML);
-        /*
-         '<button class=btn__reset onclick=location=URL>Try again</button>';
-         */
-        
+        showOverley.className = 'win';
+        showOverley.textContent = '<h1> Congrats!, you win </h1>';
+        container.appendChild(showOverley);
     }
 }
+  
+ 
+
+
