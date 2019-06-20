@@ -1,8 +1,6 @@
 // used variables.
 const qwertyElement = document.querySelector('#qwerty');
-const phraseElement = document.getElementById('phrase');
-const container = document.getElementsByClassName('main-container');
-
+//const phrasesInArray = document.getElementById('phrase');
 const loosingTries = document.querySelectorAll(".tries");
 //counter.
 let missed = 0;
@@ -12,16 +10,6 @@ let missed = 0;
 const overleyElement = document.querySelector('.btn__reset');
 const hideSreenOverley = document.querySelector('.start');
 
-//triggers the 'click' on start game button to hide the overley.
-overleyElement.addEventListener('click', () => 
-{
-    hideSreenOverley.style.display = 'none';
-});
-
-function retry() {
-    
-}
-
 const phrasesInArray = [
     'take the risk',
     'lose the chance',
@@ -29,6 +17,11 @@ const phrasesInArray = [
     'Dream big pray bigger',
     'if you want it work for it'
 ];
+//triggers the 'click' on start game button to hide the overley.
+overleyElement.addEventListener('click', () => 
+{
+    hideSreenOverley.style.visibility = 'hidden';
+});
 
 // reusable function that randomly picks phrase from passed variable container.
 function getRandomPhraseAsArray(arr)
@@ -41,6 +34,8 @@ function getRandomPhraseAsArray(arr)
 // calls the function by passing variable constainer.
 const phraseArray = getRandomPhraseAsArray(phrasesInArray);
   
+
+
 function addPhraseToDisplay(arr)
 {
     // do stuff any arr that is passed in, and add to `#phrase ul`
@@ -87,16 +82,12 @@ qwertyElement.addEventListener('click', (event) =>
     if (event.target.tagName === 'BUTTON')
     {
         const letterClicked = event.target.textContent;
-
+        let letterFound =  checkLetter(letterClicked);
         event.target.classList.add("chosen");
         event.target.setAttribute('disabled', true);
-        let letterFound =  checkLetter(letterClicked);
-
        if (letterFound === null)
        {
-            //loosingTries[missed].style.display = 'none';
-            let trialChances = document.querySelectorAll('.tries')[0];
-            trialChances.remove();
+            loosingTries[missed].style.display = 'none'
             missed += 1;
        }
     }
@@ -112,31 +103,24 @@ qwertyElement.addEventListener('click', (event) =>
 */
 
 //const title = document.querySelectorAll('.title');
-const showOverley = document.querySelectorAll('.overlay');
+const showOverley = document.querySelectorAll('overlay');
 
 function checkWin() 
 {
     const lettersWithShow = document.querySelectorAll('.show');
     const lettersWithLetter = document.querySelectorAll('.letter');
-
-    if (missed >= 5) 
+    if (missed === 5) 
     {
-
         showOverley.className = 'lose';
         showOverley.textContent =  'Sorry, you did loose'
         console.log(showOverley.textContent);
-        //+ '<button class=btn__reset onclick=location=URL>Try again</button>'
-       //console.log(showOverley.textContent);
-       // container.appendChild(showOverley);
     }
     else if ( lettersWithShow.length === lettersWithLetter.length)
     {
         showOverley.className = 'win';
-        showOverley.textContent = '<h1> Congrats!, you win </h1>';
-        container.appendChild(showOverley);
+        showOverley.textContent = 'CongratextContentts!, you win ';
+        console.log(showOverley);
+        hideSreenOverley.style.visibility = 'hidden';
+       
     }
 }
-  
- 
-
-
