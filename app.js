@@ -120,7 +120,6 @@ function checkWin()
         showOverley.className = 'win';
         showOverley.textContent = 'CongratextContentts!, you win ';
         console.log(showOverley);
-        hideSreenOverley.style.visibility = 'hidden';
        
     }
 }
