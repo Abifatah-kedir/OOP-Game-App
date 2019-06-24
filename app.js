@@ -7,8 +7,9 @@ let missed = 0;
 
 //selects  the start button and stores back to the 
 // overleyElement variable
-const overleyElement = document.querySelector('.btn__reset');
 const hideSreenOverley = document.querySelector('.start');
+const overleyElement = document.querySelector('.btn__reset');
+
 
 const phrasesInArray = [
     'take the risk',
@@ -20,7 +21,7 @@ const phrasesInArray = [
 //triggers the 'click' on start game button to hide the overley.
 overleyElement.addEventListener('click', () => 
 {
-    hideSreenOverley.style.visibility = 'hidden';
+    hideSreenOverley.style.display = 'none';
 });
 
 // reusable function that randomly picks phrase from passed variable container.
@@ -46,10 +47,12 @@ function addPhraseToDisplay(arr)
         listItem.innerHTML += arr[i];
         parentUl.appendChild(listItem);
 
-        if( /*arr[i] !== ' ' &&*/  arr[i].match(/^[a-zA-Z]+$/) )
+        if( arr[i] !== ' ' &&  arr[i].match(/^[a-zA-Z]+$/) )
         {
             listItem.className = 'letter';
             listItem.style.transition = 'all .75s';
+        } else {
+            listItem.className = "space";
         }
     }
     return arr;
@@ -103,23 +106,37 @@ qwertyElement.addEventListener('click', (event) =>
 */
 
 //const title = document.querySelectorAll('.title');
-const showOverley = document.querySelectorAll('overlay');
+//const showOverley = document.querySelectorAll('#overlay');
 
 function checkWin() 
 {
     const lettersWithShow = document.querySelectorAll('.show');
     const lettersWithLetter = document.querySelectorAll('.letter');
+    const gameSection = document.querySelectorAll('.section');
     if (missed === 5) 
     {
-        showOverley.className = 'lose';
-        showOverley.textContent =  'Sorry, you did loose'
-        console.log(showOverley.textContent);
+        for (let i = 0; gameSection.length; i++)
+        {
+            let li = gameSection[i];
+    
+            if ( li.className === 'section' ) 
+            {
+                li.style.display = 'none';
+                hideSreenOverley.style.display = "block";
+                hideSreenOverley.className = 'lose';
+            }  
+        }
+       
+       
+        //showOverley.textContent =  '<h2> Sorry, you did loose <h2>'
+        //sdocument.write(showOverley.textContent);
     }
     else if ( lettersWithShow.length === lettersWithLetter.length)
     {
         showOverley.className = 'win';
         showOverley.textContent = 'CongratextContentts!, you win ';
-        console.log(showOverley);
+        console.log(showOverley.textContent);
        
     }
+   
 }
