@@ -12,11 +12,11 @@ const overleyElement = document.querySelector('.btn__reset');
 
 
 const phrasesInArray = [
-    'take the risk',
-    'lose the chance',
-    'prove them wrong',
-    'Dream big pray bigger',
-    'if you want it work for it'
+    'Day and Night',
+    'Lose and Win',
+    'Rich and Poor',
+    'Dry and Dirty',
+    'Eerth and Sky'
 ];
 //triggers the 'click' on start game button to hide the overley.
 overleyElement.addEventListener('click', () => 
@@ -105,14 +105,17 @@ qwertyElement.addEventListener('click', (event) =>
        ===================================
 */
 
-//const title = document.querySelectorAll('.title');
-//const showOverley = document.querySelectorAll('#overlay');
-
 function checkWin() 
 {
     const lettersWithShow = document.querySelectorAll('.show');
     const lettersWithLetter = document.querySelectorAll('.letter');
     const gameSection = document.querySelectorAll('.section');
+
+    const loseMessage = document.createElement("h1");
+    loseMessage.textContent = "Sorry, you lose! "; 
+    const winMessage = document.createElement('h1');
+    winMessage.textContent = "Congrats!, you win ";
+
     if (missed === 5) 
     {
         for (let i = 0; gameSection.length; i++)
@@ -123,19 +126,30 @@ function checkWin()
             {
                 li.style.display = 'none';
                 hideSreenOverley.style.display = "block";
-                hideSreenOverley.className = 'lose';
+                hideSreenOverley.classList.add('lose');
+                hideSreenOverley.removeChild(overleyElement);
+                hideSreenOverley.append(loseMessage);
             }  
         }
-       
-       
         //showOverley.textContent =  '<h2> Sorry, you did loose <h2>'
         //sdocument.write(showOverley.textContent);
     }
     else if ( lettersWithShow.length === lettersWithLetter.length)
     {
-        showOverley.className = 'win';
-        showOverley.textContent = 'CongratextContentts!, you win ';
-        console.log(showOverley.textContent);
+        
+        for (let i = 0; gameSection.length; i++)
+        {
+            let li = gameSection[i];
+    
+            if ( li.className === 'section' ) 
+            {
+                li.style.display = 'none';
+                hideSreenOverley.style.display = "block";
+                hideSreenOverley.classList.add('win');
+                hideSreenOverley.removeChild(overleyElement);
+                hideSreenOverley.append(winMessage);
+            }  
+        }
        
     }
    
