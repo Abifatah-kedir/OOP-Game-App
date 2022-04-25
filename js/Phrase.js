@@ -1,0 +1,54 @@
+/* Treehouse FSJS Techdegree
+ * Project 4 - OOP Game App
+ * Phrase.js */
+
+class Phrase {
+    constructor(phrase) {
+        this.phrase = phrase;
+    }
+
+    // /**
+    // * Display phrase on game board
+    // */
+     addPhraseToDisplay() { 
+        let randomPrase = this.phrase.phrase;
+        for(let i = 0; i < randomPrase.length; i++)
+        {
+            const parentUl = document.querySelector('#phrase ul');
+            const listItem = document.createElement('li');
+
+            listItem.textContent = randomPrase[i];
+            parentUl.appendChild(listItem);
+
+            if((/[a-zA-Z]/).test(listItem) )
+            {
+                listItem.className = 'letter';
+                listItem.style.transition = 'all .75s';
+            } else {
+                listItem.className = "space";
+            }
+        }
+        return randomPrase;
+    }
+
+    // /**
+    //     * Checks if passed letter is in phrase
+    //     * @param (string) playerClickedLetter - playerClickedLetter to checks 
+    // */
+    // checkLetter(UserPickedLetter){
+    //     // const thePrase =  this.addPhraseToDisplay();
+    //     let thePhrase = this.phrase;
+    //     for (let i = 0; i < thePhrase.length; i += 1) 
+    //     {
+    //         let letterPhrase = thePhrase[i].toLowerCase();
+    //         if (UserPickedLetter === letterPhrase){
+    //             this.showMatchedLetter(i)
+    //         }
+    //     }
+    // }
+
+    // showMatchedLetter(i) {
+    //     const revealedLetters = document.querySelectorAll(".letter");
+    //     revealedLetters[i].classList.add('show');
+    // }
+}
