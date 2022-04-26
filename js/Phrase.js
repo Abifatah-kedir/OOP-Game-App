@@ -11,7 +11,7 @@ class Phrase {
     // * Display phrase on game board
     // */
      addPhraseToDisplay() { 
-        let randomPrase = this.phrase.phrase;
+        let randomPrase = this.phrase;
         for(let i = 0; i < randomPrase.length; i++)
         {
             const parentUl = document.querySelector('#phrase ul');
@@ -35,20 +35,27 @@ class Phrase {
     //     * Checks if passed letter is in phrase
     //     * @param (string) playerClickedLetter - playerClickedLetter to checks 
     // */
-    // checkLetter(UserPickedLetter){
-    //     // const thePrase =  this.addPhraseToDisplay();
-    //     let thePhrase = this.phrase;
-    //     for (let i = 0; i < thePhrase.length; i += 1) 
-    //     {
-    //         let letterPhrase = thePhrase[i].toLowerCase();
-    //         if (UserPickedLetter === letterPhrase){
-    //             this.showMatchedLetter(i)
-    //         }
-    //     }
-    // }
+    checkLetter(UserPickedLetter){
+        // const thePrase =  this.addPhraseToDisplay();
+        let thePhrase = this.phrase;
+        for (let i = 0; i < thePhrase.length; i += 1) 
+        {
+            let letterPhrase = thePhrase[i].toLowerCase();
+            if (UserPickedLetter === letterPhrase){
+                this.showMatchedLetter(i);
+            }else {
+               
+            }
+        }
+        console.log(this.phrase);
+    }
 
-    // showMatchedLetter(i) {
-    //     const revealedLetters = document.querySelectorAll(".letter");
-    //     revealedLetters[i].classList.add('show');
-    // }
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(i) {
+      document.querySelectorAll(".letter")[i].classList.add('show');
+    }
+
 }

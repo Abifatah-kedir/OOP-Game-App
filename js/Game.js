@@ -33,83 +33,91 @@ class Game {
      }
 
      
-        
-    // checkWin() {
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    */
+
+    checkWin() {
        
-    //     const gameStatus = null;
+        // const gameStatus = null;
 
-    //     const lettersWithShow = document.querySelectorAll('.show');
-    //     const lettersWithLetter = document.querySelectorAll('.letter');
-    //     const gameSection = document.querySelectorAll('.section');
+        const lettersWithShow = document.querySelectorAll('.show');
+        const lettersWithLetter = document.querySelectorAll('.letter');
+        const gameSection = document.querySelectorAll('.section');
 
+        // if (this.missed === 5) 
+        // {
+        //     for (let i = 0; gameSection.length; i++)
+        //     {
+        //         let li = gameSection[i];
+        
+        //         if ( li.className === 'section' ) 
+        //         {
+        //             li.style.display = 'none';
+        //             hideSreenOverley.style.display = "block";
+        //             hideSreenOverley.classList.add('lose');
+        //             hideSreenOverley.removeChild(overleyElement);
+        //             hideSreenOverley.append(loseMessage);
+        //         }  
+        //     }
+        //     //showOverley.textContent =  '<h2> Sorry, you did loose <h2>'
+        //     //sdocument.write(showOverley.textContent);
+        // } else if ( lettersWithShow.length === lettersWithLetter.length) {
+        //     for (let i = 0; gameSection.length; i++)
+        //     {
+        //         let li = gameSection[i];
+        
+        //         if ( li.className === 'section' ) 
+        //         {
+        //             li.style.display = 'none';
+        //             hideSreenOverley.style.display = "block";
+        //             hideSreenOverley.classList.add('win');
+        //             hideSreenOverley.removeChild(overleyElement);
+        //             hideSreenOverley.append(winMessage);
+        //         }  
+        //     }
+        // }
+        if(lettersWithShow.length == lettersWithLetter.length){
+            console.log("Game is Over");
+        }else {
+            console.log("game is not done yet");
+        }
+
+        // for (let i =0; i < lettersWithLetter.length; i++){
+        //     if (lettersWithLetter[i].classList.contains("show") ) {
+        //         console.log(lettersWithLetter[i]);
+        //     }
+        // }
        
-    //     if (this.missed === 5) 
-    //     {
-    //         for (let i = 0; gameSection.length; i++)
-    //         {
-    //             let li = gameSection[i];
-        
-    //             if ( li.className === 'section' ) 
-    //             {
-    //                 li.style.display = 'none';
-    //                 hideSreenOverley.style.display = "block";
-    //                 hideSreenOverley.classList.add('lose');
-    //                 hideSreenOverley.removeChild(overleyElement);
-    //                 hideSreenOverley.append(loseMessage);
-    //             }  
-    //         }
-    //         //showOverley.textContent =  '<h2> Sorry, you did loose <h2>'
-    //         //sdocument.write(showOverley.textContent);
-    //     } else if ( lettersWithShow.length === lettersWithLetter.length) {
-    //         for (let i = 0; gameSection.length; i++)
-    //         {
-    //             let li = gameSection[i];
-        
-    //             if ( li.className === 'section' ) 
-    //             {
-    //                 li.style.display = 'none';
-    //                 hideSreenOverley.style.display = "block";
-    //                 hideSreenOverley.classList.add('win');
-    //                 hideSreenOverley.removeChild(overleyElement);
-    //                 hideSreenOverley.append(winMessage);
-    //             }  
-    //         }
-    //     }
-
-    //     for (let i =0; i < lettersWithLetter.length; i++){
-    //         if (lettersWithLetter[i].classList.contains("show") ) {
-    //             console.log(lettersWithLetter[i]);
-    //         }
-    //     }
-    // }
+    }
 
     // /**
     //     * Increases the value of the missed property
     //     * Removes a life from the scoreboard
     //     * Checks if player has remaining lives and ends game if player is out
     // */
-    // removeLife(){
-    //     const loosingTries = document.querySelectorAll(".tries img");
-    //     const theHearts = loosingTries[loosingTries.length - 1];
-    //     theHearts.src = "images/lostHeart.png";
+    removeLife(){
+       
+        const loosingTries = document.querySelectorAll(".tries img");
+        console.log(loosingTries[loosingTries.length - 1]);
+        // const theHearts = loosingTries[loosingTries.length - 1];
+        // theHearts.src = "images/lostHeart.png";
 
-    //     let missedTimes = this.missed;
-    //     missedTimes = missedTimes + 1;
-
-    //     if(missedTimes == 5) {
-    //         gameOver(); 
-    //     }
-    // }
+        // if(this.missed == 5) {
+        //     gameOver(); 
+        // }
+    }
     // /**
     //     * Displays game over message
     //     * @param {boolean} gameWon - Whether or not the user won the game
     // */
-    // gameOver(gameWon) {
-    //     const loseMessage = document.createElement("h1");
-    //     loseMessage.textContent = "Sorry, you lose! "; 
-    //     const winMessage = document.createElement('h1');
-    //     winMessage.textContent = "Congrats!, you win ";
-    // }
+    gameOver(gameWon) {
+        const loseMessage = document.createElement("h1");
+        loseMessage.textContent = "Sorry, you lose! "; 
+        const winMessage = document.createElement('h1');
+        winMessage.textContent = "Congrats!, you win ";
+    }
 
 
 
@@ -118,7 +126,7 @@ class Game {
     // */
     startGame() {
         document.querySelector('.start').style.display = 'none';
-        const randomPhrase = new Phrase(this.activePhrase);
+        const randomPhrase = new Phrase(this.activePhrase.phrase);
         randomPhrase.addPhraseToDisplay();
     }
 }
