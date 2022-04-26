@@ -39,13 +39,17 @@ class Game {
     */
     handleInteraction(btn) {
         btn.disabled = true;
-        const randomPhrase = this.activePhrase.phrase.toLowerCase();
+        const randomPhrase = this.activePhrase;
         const chosenLetter = btn.textContent;
-        console.log(randomPhrase);
-   
-        if(randomPhrase.includes(chosenLetter)) {
+        
+        console.log(this.activePhrase.phrase);
+        console.log(randomPhrase.checkLetter(chosenLetter));
+        
+        if(randomPhrase.checkLetter(chosenLetter)) {
+            //randomPhrase.includes(chosenLetter)
             btn.classList.add('chosen');
-            this.activePhrase.showMatchedLetter(chosenLetter);
+
+            // this.activePhrase.showMatchedLetter(chosenLetter);
             this.checkWin();
         }else {
             btn.classList.add('wrong');
@@ -60,7 +64,15 @@ class Game {
     checkWin() {
         const lettersWithShow = document.querySelectorAll('.show');
         const lettersWithLetter = document.querySelectorAll('.letter');
-        const gameSection = document.querySelectorAll('.section');
+
+        if(lettersWithShow.length == lettersWithLetter.length){
+            console.log("Game is Over");
+        }else {
+            console.log("game is not done yet");
+        }
+
+
+        // const gameSection = document.querySelectorAll('.section');
 
         // if (this.missed === 5) 
         // {
@@ -94,11 +106,7 @@ class Game {
         //         }  
         //     }
         // }
-        if(lettersWithShow.length == lettersWithLetter.length){
-            console.log("Game is Over");
-        }else {
-            console.log("game is not done yet");
-        }
+       
     }
 
     // /**
