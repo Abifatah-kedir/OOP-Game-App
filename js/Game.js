@@ -33,7 +33,26 @@ class Game {
         return thePhrases[Math.floor(Math.random()*thePhrases.length)];
      }
 
-     
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(btn) {
+        btn.disabled = true;
+        const randomPhrase = this.activePhrase.phrase.toLowerCase();
+        const chosenLetter = btn.textContent;
+        console.log(randomPhrase);
+   
+        if(randomPhrase.includes(chosenLetter)) {
+            btn.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(chosenLetter);
+            this.checkWin();
+        }else {
+            btn.classList.add('wrong');
+            this.removeLife();
+        }
+    };
+
     /**
     * Checks for winning move
     * @return {boolean} True if game has been won, false if game wasn't won
@@ -91,7 +110,6 @@ class Game {
         const loosingTries = document.querySelectorAll(".tries img");
         const theHearts = loosingTries[this.missed];
         theHearts.src = "images/lostHeart.png";
-        
         this.missed +=1;
 
         if(this.missed == 5) {
@@ -99,6 +117,7 @@ class Game {
             console.log("All hearts are gone")
         }
     }
+    
     // /**
     //     * Displays game over message
     //     * @param {boolean} gameWon - Whether or not the user won the game
@@ -124,4 +143,5 @@ class Game {
         const randomPhrase = new Phrase(this.activePhrase.phrase);
         randomPhrase.addPhraseToDisplay();
     }
+
 }

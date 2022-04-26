@@ -36,7 +36,6 @@ class Phrase {
     //     * @param (string) playerClickedLetter - playerClickedLetter to checks 
     // */
     checkLetter(UserPickedLetter){
-        // const thePrase =  this.addPhraseToDisplay();
         let thePhrase = this.phrase;
         for (let i = 0; i < thePhrase.length; i += 1) 
         {
@@ -54,8 +53,14 @@ class Phrase {
     * Displays passed letter on screen after a match is found
     * @param (string) letter - Letter to display
     */
-    showMatchedLetter(i) {
-      document.querySelectorAll(".letter")[i].classList.add('show');
+    showMatchedLetter(MatchingLetter) {
+        const randomPhrase = document.querySelectorAll(".letter");
+        for(let i = 0; i < randomPhrase.length; i++){
+           if( randomPhrase[i].textContent.toLowerCase() === MatchingLetter){
+               randomPhrase[i].classList.add('show');
+            }
+        }
     }
+
 
 }
