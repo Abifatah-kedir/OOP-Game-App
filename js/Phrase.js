@@ -35,14 +35,15 @@ class Phrase {
     //     * Checks if passed letter is in phrase
     //     * @param (string) playerClickedLetter - playerClickedLetter to checks 
     // */
-    checkLetter(letter){
+    checkLetter(playerClickedLetter){
         let thePhrase = this.phrase;
         for (let i = 0; i < thePhrase.length; i ++) 
         {
-            if (thePhrase[i].toLowerCase() === letter ){
+            if (thePhrase[i].toLowerCase() === playerClickedLetter ){
                 this.showMatchedLetter(i);
             }
         }
+        
     }
 
     /**
@@ -51,12 +52,6 @@ class Phrase {
     */
     showMatchedLetter(i) {
         document.querySelectorAll('.letter')[i].classList.add("show");
-        // const randomPhrase = document.querySelectorAll(".letter");
-        // for(let i = 0; i < randomPhrase.length; i++){
-        //    if( randomPhrase[i].textContent.toLowerCase() === MatchingLetter){
-        //        randomPhrase[i].classList.add('show');
-        //     }
-        // }
     }
 
 

@@ -41,16 +41,14 @@ class Game {
         btn.disabled = true;
         const randomPhrase = this.activePhrase;
         const chosenLetter = btn.textContent;
-        
-        console.log(this.activePhrase.phrase);
-        console.log(randomPhrase.checkLetter(chosenLetter));
-        
-        if(randomPhrase.checkLetter(chosenLetter)) {
-            //randomPhrase.includes(chosenLetter)
+      
+        console.log(randomPhrase);
+        if(randomPhrase.phrase.toLowerCase().includes(chosenLetter)) {
             btn.classList.add('chosen');
-
-            // this.activePhrase.showMatchedLetter(chosenLetter);
-            this.checkWin();
+            randomPhrase.checkLetter(chosenLetter);
+            if(this.checkWin() ){
+                this.gameOver(this.checkWin());
+            }
         }else {
             btn.classList.add('wrong');
             this.removeLife();
@@ -64,12 +62,14 @@ class Game {
     checkWin() {
         const lettersWithShow = document.querySelectorAll('.show');
         const lettersWithLetter = document.querySelectorAll('.letter');
-
+   
         if(lettersWithShow.length == lettersWithLetter.length){
-            console.log("Game is Over");
+            return true;
         }else {
-            console.log("game is not done yet");
+            return false;
         }
+        
+
 
 
         // const gameSection = document.querySelectorAll('.section');
@@ -121,8 +121,7 @@ class Game {
         this.missed +=1;
 
         if(this.missed == 5) {
-            this.gameOver(this.missed); 
-            console.log("All hearts are gone")
+            this.gameOver(this.checkWin()); 
         }
     }
     
@@ -133,7 +132,7 @@ class Game {
     gameOver(gameWon) {
        document.querySelector('.start').style.display = "block";
        const winMessage = document.getElementById("game-over-message");
-       console.log();
+
         if (gameWon) {
             winMessage.parentElement.className = "win";
             winMessage.textContent = "Great job!";
