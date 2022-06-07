@@ -3,17 +3,23 @@
  * app.js 
  * */
 
-const phrase = new Phrase();
-const game = new Game();
+let game;
 
-const overleyElement = document.querySelector('#btn__reset');
-overleyElement.addEventListener('click', () => {
-    game.startGame();
+const userSelectedKeys =document.querySelector("button#btn__reset");
+userSelectedKeys.addEventListener("click", () => {
+  game = new Game();
+  game.resetGame();
+  game.startGame();
+
+  //for testing
+  console.log(game.activePhrase.phrase);
 });
 
-const userSelectedKeys = document.getElementById("qwerty");
-userSelectedKeys.addEventListener('click', (button)=> {
-    if(button.target.tagName === 'BUTTON'){
-        game.handleInteraction(button.target);
-    }
+const keyboard = document.getElementById("qwerty");
+keyboard.addEventListener("click", (event)=> {
+  const SelectedKey = event.target;
+  if (SelectedKey.className === "key") {
+    game.handleInteraction(event.target);
+  }
 });
+
