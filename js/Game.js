@@ -6,7 +6,7 @@ class Game {
     constructor() { 
         this.missed = 0;
         this.phrases = this.createPhrases();
-        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase = null;
     }
 
      // /**
@@ -37,17 +37,24 @@ class Game {
 
     // Resets Game
   resetGame() {
+        // removes the radom phrases
         document.querySelector("#phrase ul").innerHTML = "";
 
+        //resets the keyboard clases.
         const keyboardKeys = document.querySelectorAll(".key");
         for (let i = 0; i < keyboardKeys.length; i++) {
             keyboardKeys[i].disabled = false;
             keyboardKeys[i].classList.remove("chosen", "wrong");
         }
 
+        //resets the overlay class 
+        const Message = document.getElementById("game-over-message");
+        Message.parentElement.className = "start";
+
+        //resets the heats src imgaes.
         const tries = document.querySelectorAll(".tries img");
         for (let i = 0; i < tries.length; i++) {
-            if (tries[i].src = "images/lostHeart.png") {
+            if (tries[i].src.indexOf("images/lostHeart.png") != -1) {
                 tries[i].src = "images/liveHeart.png";
             }
         }
@@ -58,6 +65,7 @@ class Game {
     // */
     startGame() {
         document.querySelector('.start').style.display = 'none';
+        this.activePhrase = this.getRandomPhrase()
         this.activePhrase.addPhraseToDisplay();
     }
 
@@ -103,12 +111,13 @@ class Game {
         const Message = document.getElementById("game-over-message");
         if (gameWon) {
             Message.parentElement.classList.add("win");
-            // Message.parentElement.classList.remove("lose");
             Message.textContent = "Great job!";
         } else {
             Message.parentElement.classList.add("lose");
             Message.textContent = "Sorry, better luck next time!"; 
         }
+
+        console.log(Message.parentElement);
     }
 
     /**
@@ -126,6 +135,7 @@ class Game {
             this.activePhrase.showMatchedLetter(btn.textContent);
             if (this.checkForWin()) {
                  this.gameOver(true);
+
             }
         }
     };

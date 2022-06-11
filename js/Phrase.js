@@ -52,7 +52,6 @@ class Phrase {
         if (this.checkLetter(playerClickedLetter)) {
             for (let i = 0; i < letterList.length; i++) {
                 if (letterList[i].textContent === playerClickedLetter) {
-                // letterList[i].classList.remove("hide");
                 letterList[i].classList.add("show");
                 }
             }
